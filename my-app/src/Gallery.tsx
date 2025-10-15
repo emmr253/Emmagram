@@ -5,16 +5,15 @@ import "./Gallery.css";
 
 const Gallery: React.FC<GalleryProps> = ({ images, setNewModal }) => {  
     return (
-        images.filter(Boolean).map((img, index) => (
+        images.filter(Boolean).map((img) => (
             <img 
                 className="gallery-image"
                 key={img.id}
                 src={img.url}
                 onClick={() => {
                     setNewModal(<ImageModal values={img} setNewModal={setNewModal} />);
-                    // setSelectedImage(url);
-                    console.log("Clicked image URL:", img.url)}
-                }
+                    // console.log("Clicked image URL:", img.url)}
+                }}
             />
         ))
         

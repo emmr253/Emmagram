@@ -1,10 +1,10 @@
 import "./ImageModal.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { ImageModalProps } from "./Interfaces";
 
 const ImageModal: React.FC<ImageModalProps> = ({ values, setNewModal }) => {
   const [isLiked, setIsLiked] = useState(values.liked);
-  // const [comments, setComments] = useState([""]);
+  useEffect(() => {values.liked = isLiked}, [isLiked]);
   const [inputedComment, setInputedComment] = useState("");
 
 
@@ -43,24 +43,21 @@ const ImageModal: React.FC<ImageModalProps> = ({ values, setNewModal }) => {
                   setInputedComment(event.target.value);
                 }}
                 placeholder="Add new comment"
-              ></input>
+              />
               <button
                 type="submit"
                 id="postComment"
-                // onClick={() => setComments([...comments, inputedComment])}
                 onClick={() => values.comments = [...values.comments, inputedComment]}
               >
                 Post
               </button>
                <div id="commentSection">
                 {/* {comments.map((comments, index) => { */}
-                {values.comments.map((comment, index) => {
-                  return (
+                {values.comments.map((comment, index) => 
                     <p id="comment" key={index}>
                       {comment}
                     </p>
-                  );
-                })}
+                )}
               </div>
             </form>
           </div>

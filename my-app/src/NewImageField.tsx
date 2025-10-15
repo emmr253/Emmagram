@@ -32,7 +32,7 @@ const NewImageField: React.FC<NewImageFieldProps> = ({
         onClick={(e) => {
           e.preventDefault();
           addImageByTitleAndURL(currentImageTitle, currentImageUrl);
-          console.log("Submitted URL:", currentImageUrl);
+          // console.log("Submitted URL:", currentImageUrl);
           setCurrentImageUrl("");
           setCurrentImageTitle("");
         }}

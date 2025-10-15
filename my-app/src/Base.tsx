@@ -9,14 +9,14 @@ const Base: React.FC = () => {
   const [allImages, setAllImages] = useState<ImageValues[]>([]);
   const [newModal, setNewModal] = useState(<></>);
 
-  console.log(
-    "Current images:",
-    allImages.map((img) => "[id:" + img.id + ", title: " + img.title + ", url: " + img.url + ", liked: " + img.liked + "]")
-  );
+  // console.log(
+  //   "Current images:",
+  //   allImages.map((img) => "[id:" + img.id + ", title: " + img.title + ", url: " + img.url + ", liked: " + img.liked + "]")
+  // );
   function addImageByTitleAndURL(newTitle: string, newURL: string) {
     setAllImages([
       ...allImages,
-      { id: allImages.length+1, url: newURL, title: newTitle, liked: false, comments: [] }, // adds as an ImageValues
+      { id: allImages.length+1, url: newURL, title: newTitle, liked: false, comments: [] },
     ]);
   }
   return (
