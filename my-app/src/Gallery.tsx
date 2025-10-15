@@ -1,22 +1,23 @@
 import ImageModal from "./ImageModal";
+import { useState } from "react";
+import type { GalleryProps } from "./Interfaces";
+import "./Gallery.css";
 
-interface Gallery {
-    images: string[];
-}
-
-const Gallery: React.FC<Gallery> = ({ images }) => {    
+const Gallery: React.FC<GalleryProps> = ({ images, setNewModal }) => {  
     return (
-        images.map((url, index) => (
+        images.filter(Boolean).map((img, index) => (
             <img 
-                key={index}
-                src={url}
-                style={{ height: "100px", width: "100px", margin: "5px", objectFit: "cover", cursor: "pointer", backgroundColor:"khaki" }} 
+                className="gallery-image"
+                key={img.id}
+                src={img.url}
                 onClick={() => {
-                    <ImageModal url={url}/>
-                    console.log("Clicked image URL:", url)}
+                    setNewModal(<ImageModal values={img} setNewModal={setNewModal} />);
+                    // setSelectedImage(url);
+                    console.log("Clicked image URL:", img.url)}
                 }
             />
         ))
+        
     )
 }
 

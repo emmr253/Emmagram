@@ -1,0 +1,16 @@
+#newImageForm {
+  float: left;
+  height: fit-content;
+  width: 40vh;
+  background-color: lightgrey;
+  padding: 20px;
+}
+
+#newImageUrl{
+  width: 80%;
+}
+
+#submitImage {
+  width: 80%;
+}
+

@@ -1,0 +1,9 @@
+.gallery-image {
+  height: 100px;
+  width: 100px;
+  margin: 5px;
+  float: left;
+  object-fit: cover;
+  cursor: pointer;
+  background-color: khaki;
+}

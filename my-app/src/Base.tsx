@@ -1,23 +1,33 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import ImageModal from "./ImageModal.tsx";
-import { useState } from "react";
 import NewImageField from "./NewImageField.tsx";
 import Gallery from "./Gallery.tsx";
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { useState } from "react";
+import type { ImageValues } from "./Interfaces.ts";
 
-// createRoot(document.getElementById("root")!).render(
 const Base: React.FC = () => {
-  const [imageURLs, setImageURLs] = useState([""]);
-  
-  function addImageUrl(newURL: string) {
-    setImageURLs(() => [...imageURLs, newURL]);
+  const [allImages, setAllImages] = useState<ImageValues[]>([]);
+  const [newModal, setNewModal] = useState(<></>);
+
+  console.log(
+    "Current images:",
+    allImages.map((img) => "[id:" + img.id + ", title: " + img.title + ", url: " + img.url + ", liked: " + img.liked + "]")
+  );
+  function addImageByTitleAndURL(newTitle: string, newURL: string) {
+    setAllImages([
+      ...allImages,
+      { id: allImages.length+1, url: newURL, title: newTitle, liked: false, comments: [] }, // adds as an ImageValues
+    ]);
   }
   return (
     <>
-      <NewImageField addImage={addImageUrl} />
-      <Gallery images={imageURLs} />
-      
-      {/* "https://i.natgeofe.com/n/4f5aaece-3300-41a4-b2a8-ed2708a0a27c/domestic-dog_thumb_square.jpg?wp=1&w=357&h=357"} */}
+      <NewImageField
+        addImageByTitleAndURL={addImageByTitleAndURL}
+        setAllImages={setAllImages}
+        setNewModal={setNewModal}
+      />
+      <Gallery images={allImages} setNewModal={setNewModal} />
+      {newModal}
     </>
   );
 };
