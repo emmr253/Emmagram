@@ -2,11 +2,15 @@ import "./ImageModal.css";
 import { useEffect, useState } from "react";
 import type { ImageModalProps } from "./Interfaces";
 
-const ImageModal: React.FC<ImageModalProps> = ({ values, setNewModal }) => {
+const ImageModal: React.FC<ImageModalProps> = ({
+  post: values,
+  setNewModal,
+}) => {
   const [isLiked, setIsLiked] = useState(values.liked);
-  useEffect(() => {values.liked = isLiked}, [isLiked]);
+  useEffect(() => {
+    values.liked = isLiked;
+  }, [isLiked]);
   const [inputedComment, setInputedComment] = useState("");
-
 
   return (
     <div id="whiteBackground">
@@ -15,17 +19,20 @@ const ImageModal: React.FC<ImageModalProps> = ({ values, setNewModal }) => {
         <div id="info">
           <div id="title">
             <p
-            style={{cursor: "pointer", float:"right"}}
+              style={{ cursor: "pointer", float: "right" }}
               onClick={() => setNewModal(<></>)}
-            >X</p>
-            <h2
-            >{values.title}</h2>
+            >
+              X
+            </p>
+            <h2>{values.title}</h2>
           </div>
           <div id="likesContainer">
-            <button id="Likes" onClick={() => {
-              setIsLiked(!isLiked)
-              values.liked = !values.liked
-            }}>
+            <button
+              id="Likes"
+              onClick={() => {
+                setIsLiked(!isLiked);
+              }}
+            >
               {isLiked ? "❤️" : "🩶"}
             </button>
           </div>
@@ -47,17 +54,18 @@ const ImageModal: React.FC<ImageModalProps> = ({ values, setNewModal }) => {
               <button
                 type="submit"
                 id="postComment"
-                onClick={() => values.comments = [...values.comments, inputedComment]}
+                onClick={() =>
+                  (values.comments = [...values.comments, inputedComment])
+                }
               >
                 Post
               </button>
-               <div id="commentSection">
-                {/* {comments.map((comments, index) => { */}
-                {values.comments.map((comment, index) => 
-                    <p id="comment" key={index}>
-                      {comment}
-                    </p>
-                )}
+              <div id="commentSection">
+                {values.comments.map((comment, index) => (
+                  <p id="comment" key={index}>
+                    {comment}
+                  </p>
+                ))}
               </div>
             </form>
           </div>

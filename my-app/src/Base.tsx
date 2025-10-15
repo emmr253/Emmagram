@@ -3,10 +3,10 @@ import Gallery from "./Gallery.tsx";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { useState } from "react";
-import type { ImageValues } from "./Interfaces.ts";
+import type { Post } from "./Interfaces.ts";
 
 const Base: React.FC = () => {
-  const [allImages, setAllImages] = useState<ImageValues[]>([]);
+  const [allImages, setAllImages] = useState<Post[]>([]);
   const [newModal, setNewModal] = useState(<></>);
 
   // console.log(
@@ -16,7 +16,13 @@ const Base: React.FC = () => {
   function addImageByTitleAndURL(newTitle: string, newURL: string) {
     setAllImages([
       ...allImages,
-      { id: allImages.length+1, url: newURL, title: newTitle, liked: false, comments: [] },
+      {
+        id: allImages.length + 1,
+        url: newURL,
+        title: newTitle,
+        liked: false,
+        comments: [],
+      },
     ]);
   }
   return (
@@ -26,7 +32,7 @@ const Base: React.FC = () => {
         setAllImages={setAllImages}
         setNewModal={setNewModal}
       />
-      <Gallery images={allImages} setNewModal={setNewModal} />
+      <Gallery post={allImages} setNewModal={setNewModal} />
       {newModal}
     </>
   );

@@ -1,4 +1,4 @@
-export interface ImageValues {
+export interface Post {
   id: number;
   title: string;
   url: string;
@@ -7,17 +7,17 @@ export interface ImageValues {
 }
 
 export interface GalleryProps {
-  images: ImageValues[];
+  post: Post[];
   setNewModal: (modal: React.JSX.Element) => void;
 }
 
 export interface ImageModalProps {
-  values: ImageValues;
+  post: Post;
   setNewModal: (modal: React.JSX.Element) => void;
 }
 
 export interface NewImageFieldProps {
   addImageByTitleAndURL: (newTitle: string, newURL: string) => void;
-  setAllImages: (clear: ImageValues[]) => void;
+  setAllImages: (clear: Post[]) => void;
   setNewModal: (modal: React.JSX.Element) => void;
 }

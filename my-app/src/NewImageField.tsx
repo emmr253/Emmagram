@@ -29,8 +29,8 @@ const NewImageField: React.FC<NewImageFieldProps> = ({
       <button
         id="submitImage"
         type="submit"
-        onClick={(e) => {
-          e.preventDefault();
+        onClick={(event) => {
+          event.preventDefault();
           addImageByTitleAndURL(currentImageTitle, currentImageUrl);
           // console.log("Submitted URL:", currentImageUrl);
           setCurrentImageUrl("");
